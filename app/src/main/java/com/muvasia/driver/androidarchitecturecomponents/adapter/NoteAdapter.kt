@@ -14,7 +14,8 @@ class NoteAdapter internal constructor(
 ) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    var notes: ArrayList<Note> = ArrayList()
+//    var notes: ArrayList<Note> = ArrayList()
+    private var notes = emptyList<Note>()
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,17 +28,15 @@ class NoteAdapter internal constructor(
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-        return notes.size
-    }
+    override fun getItemCount() = notes.size
 
     override fun onBindViewHolder(holder: NoteAdapter.ViewHolder, position: Int) {
-        val note: Note = notes[position]
-        holder.tvNoteTitle.text = note.title
-        holder.tvNoteBody.text = note.body
+        val currentNote= notes[position]
+        holder.tvNoteTitle.text = currentNote.title
+        holder.tvNoteBody.text = currentNote.body
     }
 
-    fun setNoteList(noteList: ArrayList<Note>) {
+    fun setNoteList(noteList: List<Note>) {
         this.notes = noteList
         notifyDataSetChanged()
     }
