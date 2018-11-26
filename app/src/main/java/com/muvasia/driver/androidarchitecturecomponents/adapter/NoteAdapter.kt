@@ -40,4 +40,8 @@ class NoteAdapter internal constructor(
         this.notes = noteList
         notifyDataSetChanged()
     }
+
+    fun getNoteAt(position: Int): Note {
+        return notes[position]
+    }
 }
