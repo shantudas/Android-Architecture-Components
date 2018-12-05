@@ -9,6 +9,10 @@ class NoteRepository(private val noteDao: NoteDao) {
 
     val allNotes: LiveData<List<Note>> = noteDao.fetchAllNotes()
 
+    fun getNoteItem(itemId: Int?): LiveData<Note> {
+        return noteDao.getNoteItemById(itemId)
+    }
+
 
     /**
      *  @WorkerThread annotation, to mark that this method needs to be called from a non-UI thread

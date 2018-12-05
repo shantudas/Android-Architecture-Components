@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import com.muvasia.driver.androidarchitecturecomponents.R
 import com.muvasia.driver.androidarchitecturecomponents.database.Note
@@ -14,8 +15,9 @@ class NoteAdapter internal constructor(
 ) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-//    var notes: ArrayList<Note> = ArrayList()
+    //    var notes: ArrayList<Note> = ArrayList()
     private var notes = emptyList<Note>()
+    private var listener: OnItemClickListener? = null
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,9 +33,12 @@ class NoteAdapter internal constructor(
     override fun getItemCount() = notes.size
 
     override fun onBindViewHolder(holder: NoteAdapter.ViewHolder, position: Int) {
-        val currentNote= notes[position]
+        val currentNote = notes[position]
         holder.tvNoteTitle.text = currentNote.title
         holder.tvNoteBody.text = currentNote.body
+        holder.itemView.setOnClickListener {
+            listener!!.OnItemClick(notes[position])
+        }
     }
 
     fun setNoteList(noteList: List<Note>) {
@@ -43,5 +48,14 @@ class NoteAdapter internal constructor(
 
     fun getNoteAt(position: Int): Note {
         return notes[position]
+    }
+
+
+    interface OnItemClickListener {
+        abstract fun OnItemClick(note: Note)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 }

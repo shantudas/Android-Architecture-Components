@@ -9,6 +9,9 @@ interface NoteDao {
     @Query("SELECT * from note_table ORDER BY id DESC")
     fun fetchAllNotes(): LiveData<List<Note>>
 
+    @Query("SELECT * FROM note_table WHERE id = :itemId")
+    abstract fun getNoteItemById(itemId: Int?): LiveData<Note>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(note: Note)
 

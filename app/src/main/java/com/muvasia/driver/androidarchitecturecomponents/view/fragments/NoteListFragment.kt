@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import android.widget.Toast
 
 import com.muvasia.driver.androidarchitecturecomponents.R
 import com.muvasia.driver.androidarchitecturecomponents.adapter.NoteAdapter
+import com.muvasia.driver.androidarchitecturecomponents.database.Note
 import com.muvasia.driver.androidarchitecturecomponents.viewModel.NoteViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,6 +34,7 @@ class NoteListFragment : Fragment() {
 
     companion object {
         val TAG = NoteListFragment::class.simpleName
+        const val NOTE_ID = "NOTE_ID"
 
         fun newInstance(): NoteListFragment {
             return NoteListFragment()
@@ -43,7 +46,7 @@ class NoteListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view= inflater.inflate(R.layout.fragment_note_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_note_list, container, false)
 
         val activity = activity
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_note_list)
@@ -52,7 +55,6 @@ class NoteListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
-        // Inflate the layout for this fragment
 
 
         noteViewModel.allNotes.observe(this, Observer { notes ->
@@ -60,7 +62,34 @@ class NoteListFragment : Fragment() {
         })
 
 
+        /**
+         * for update a note
+         *
+         * @param
+         */
+        adapter.setOnItemClickListener(object : NoteAdapter.OnItemClickListener {
+            override fun OnItemClick(note: Note) {
+                Log.d(TAG, "id:: " + note.id)
 
+                val updateNoteFragment = UpdateNoteFragment()
+                val bundle = Bundle()
+                bundle.putInt("NOTE_ID", note.id)
+                updateNoteFragment.arguments = bundle
+
+                activity.supportFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(UpdateNoteFragment.TAG)
+                    .replace(R.id.fragment_container, updateNoteFragment, UpdateNoteFragment.TAG)
+                    .commit()
+            }
+        })
+
+
+        /**
+         * On swipe left or right delete a note
+         *
+         * @param
+         */
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
