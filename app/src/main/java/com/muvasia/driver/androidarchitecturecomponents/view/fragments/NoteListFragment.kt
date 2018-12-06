@@ -65,7 +65,6 @@ class NoteListFragment : Fragment() {
         /**
          * for update a note
          *
-         * @param
          */
         adapter.setOnItemClickListener(object : NoteAdapter.OnItemClickListener {
             override fun OnItemClick(note: Note) {
@@ -88,7 +87,6 @@ class NoteListFragment : Fragment() {
         /**
          * On swipe left or right delete a note
          *
-         * @param
          */
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
