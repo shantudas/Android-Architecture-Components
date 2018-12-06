@@ -6,10 +6,10 @@ import android.arch.persistence.room.*
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * from note_table ORDER BY id DESC")
+    @Query("SELECT * from notes ORDER BY id DESC")
     fun fetchAllNotes(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM note_table WHERE id = :itemId")
+    @Query("SELECT * FROM notes WHERE id = :itemId")
     abstract fun getNoteItemById(itemId: Int?): LiveData<Note>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

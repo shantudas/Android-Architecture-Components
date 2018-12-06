@@ -15,7 +15,6 @@ class NoteAdapter internal constructor(
 ) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    //    var notes: ArrayList<Note> = ArrayList()
     private var notes = emptyList<Note>()
     private var listener: OnItemClickListener? = null
 
@@ -34,8 +33,10 @@ class NoteAdapter internal constructor(
 
     override fun onBindViewHolder(holder: NoteAdapter.ViewHolder, position: Int) {
         val currentNote = notes[position]
+
         holder.tvNoteTitle.text = currentNote.title
         holder.tvNoteBody.text = currentNote.body
+
         holder.itemView.setOnClickListener {
             listener!!.OnItemClick(notes[position])
         }
