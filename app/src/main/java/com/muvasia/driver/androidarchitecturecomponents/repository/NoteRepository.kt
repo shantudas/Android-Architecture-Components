@@ -1,7 +1,7 @@
 package com.muvasia.driver.androidarchitecturecomponents.repository
 
-import android.arch.lifecycle.LiveData
-import android.support.annotation.WorkerThread
+import androidx.lifecycle.LiveData
+import androidx.annotation.WorkerThread
 import com.muvasia.driver.androidarchitecturecomponents.database.Note
 import com.muvasia.driver.androidarchitecturecomponents.database.NoteDao
 

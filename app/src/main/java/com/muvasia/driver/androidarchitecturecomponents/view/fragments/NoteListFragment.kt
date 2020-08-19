@@ -1,18 +1,18 @@
 package com.muvasia.driver.androidarchitecturecomponents.view.fragments
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.muvasia.driver.androidarchitecturecomponents.R
 import com.muvasia.driver.androidarchitecturecomponents.adapter.NoteAdapter
@@ -57,7 +57,7 @@ class NoteListFragment : Fragment() {
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
 
-        noteViewModel.allNotes.observe(this, Observer { notes ->
+        noteViewModel.allNotes.observe(viewLifecycleOwner, Observer { notes ->
             adapter.setNoteList(notes!!)
         })
 

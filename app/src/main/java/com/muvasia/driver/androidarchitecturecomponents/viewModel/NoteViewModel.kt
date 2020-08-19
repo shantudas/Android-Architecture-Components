@@ -1,14 +1,17 @@
 package com.muvasia.driver.androidarchitecturecomponents.viewModel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.muvasia.driver.androidarchitecturecomponents.database.Note
 import com.muvasia.driver.androidarchitecturecomponents.database.NoteDatabase
 import com.muvasia.driver.androidarchitecturecomponents.repository.NoteRepository
-import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.android.Main
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
 

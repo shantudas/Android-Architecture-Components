@@ -1,8 +1,8 @@
 package com.muvasia.driver.androidarchitecturecomponents.view.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.muvasia.driver.androidarchitecturecomponents.R
 import com.muvasia.driver.androidarchitecturecomponents.view.fragments.NewNoteFragment
 import com.muvasia.driver.androidarchitecturecomponents.view.fragments.NoteListFragment

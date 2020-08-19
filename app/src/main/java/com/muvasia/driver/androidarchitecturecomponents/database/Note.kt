@@ -1,8 +1,8 @@
 package com.muvasia.driver.androidarchitecturecomponents.database
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /** 
  * Immutable model class for a Note and entity in the Room Database

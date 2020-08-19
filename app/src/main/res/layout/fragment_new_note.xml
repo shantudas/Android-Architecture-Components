@@ -8,13 +8,13 @@
               android:id="@+id/root_layout"
              tools:context=".view.fragments.NewNoteFragment">
 
-    <android.support.design.widget.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="title" />
 
-    <android.support.design.widget.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
